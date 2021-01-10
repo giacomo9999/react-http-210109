@@ -7,18 +7,20 @@ import NewPost from "../../components/NewPost/NewPost";
 import "./Blog.css";
 
 class Blog extends Component {
-  state = { postData: [], selectedPostId: null };
+  state = { postData: [], selectedPostId: null, error: true, errorMsg: "" };
   componentDidMount() {
     axios
-      .get("https://jsonplaceholder.typicode.com/postsss")
+      .get("https://jsonplaceholder.typicode.com/posts")
       .then((res) => {
         const posts = res.data.slice(0, 4);
         const adjPosts = posts.map((post) => {
           return { ...post, author: "Jim G." };
         });
-        this.setState({ postData: adjPosts });
+        this.setState({ postData: adjPosts, error: false });
       })
-      .catch((err) => this.setState({ error: true }));
+      .catch((err) =>
+        this.setState({ error: true, errorMsg: "An error occurred" })
+      );
   }
 
   postSelectedHandler = (id) => {
@@ -39,7 +41,7 @@ class Blog extends Component {
     });
     return this.state.error ? (
       <div>
-        <h1>An error occurred</h1>
+        <h1>{this.state.errorMsg}</h1>
       </div>
     ) : (
       <div>
