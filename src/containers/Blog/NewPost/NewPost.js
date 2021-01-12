@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-import "./NewPost.css";
+import styles from "./NewPost.module.css";
 
 class NewPost extends Component {
   state = {
@@ -24,7 +24,7 @@ class NewPost extends Component {
 
   render() {
     return (
-      <div className="NewPost">
+      <div className={styles.NewPost}>
         <h1>Add a Post</h1>
         <label>Title</label>
         <input
