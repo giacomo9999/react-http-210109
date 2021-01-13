@@ -5,11 +5,12 @@ import styles from "./FullPost.module.css";
 
 class FullPost extends Component {
   state = { loadedPost: { id: null } };
-  componentDidUpdate() {
-    if (this.props.id) {
-      if (this.state.loadedPost.id !== this.props.id) {
+
+  componentDidMount() {
+    if (this.props.match.params.id) {
+      if (this.state.loadedPost.id !== this.props.match.params.id) {
         axios
-          .get("/posts/" + this.props.id)
+          .get("/posts/" + this.props.match.params.id)
           .then((res) => this.setState({ loadedPost: res.data }))
           .then(() => console.log(this.state));
       }
@@ -19,11 +20,10 @@ class FullPost extends Component {
   deletePostHandler = () => {
     console.log("Deleting post...");
     axios
-      .delete(
-        "/posts/" + this.state.loadedPost.id
-      )
+      .delete("/posts/" + this.state.loadedPost.id)
       .then((res) => console.log(res));
   };
+
   render() {
     let post = <p style={{ textAlign: "center" }}>Please select a Post!</p>;
     if (this.props.id) {
@@ -31,7 +31,7 @@ class FullPost extends Component {
     }
     if (this.state.loadedPost) {
       post = (
-        <div className="FullPost">
+        <div className={styles.FullPost}>
           <h1>{this.state.loadedPost.title}</h1>
           <p>{this.state.loadedPost.body}</p>
           <div className="Edit">

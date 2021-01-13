@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import axios from "../../../axios";
 import Post from "../../../components/Post/Post";
 import styles from "./Posts.module.css";
@@ -7,7 +8,6 @@ class Posts extends Component {
   state = { postData: [] };
 
   componentDidMount() {
-    console.log(this.props);
     axios
       .get("/posts")
       .then((res) => {
@@ -24,18 +24,19 @@ class Posts extends Component {
   }
 
   postSelectedHandler = (id) => {
-    console.log(id + " Clicked.");
+    // console.log(id + " Clicked.");
     this.setState({ selectedPostId: id });
   };
   render() {
     const posts = this.state.postData.map((post, index) => {
       return (
-        <Post
-          key={"post_" + index}
-          title={post.title}
-          author={post.author}
-          clicked={() => this.postSelectedHandler(post.id)}
-        />
+        <Link to={"/" + post.id} key={"link_" + index}>
+          <Post
+            title={post.title}
+            author={post.author}
+            clicked={() => this.postSelectedHandler(post.id)}
+          />
+        </Link>
       );
     });
     return <section className={styles.Posts}>{posts}</section>;
