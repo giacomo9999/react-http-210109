@@ -7,6 +7,7 @@ class Posts extends Component {
   state = { postData: [] };
 
   componentDidMount() {
+    console.log(this.props);
     axios
       .get("/posts")
       .then((res) => {
