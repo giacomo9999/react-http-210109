@@ -6,7 +6,7 @@ import FullPost from "../FullPost/FullPost";
 import styles from "./Posts.module.css";
 
 class Posts extends Component {
-  state = { postData: [] };
+  state = { postData: [], selectedPostId: null };
 
   componentDidMount() {
     axios
@@ -22,9 +22,12 @@ class Posts extends Component {
   }
 
   postSelectedHandler = (id) => {
+    console.log("Post selected...", id);
     this.setState({ selectedPostId: id });
   };
+
   render() {
+    console.log("Render state: ", this.state);
     const posts = this.state.postData.map((post, index) => {
       return (
         <Link to={"/" + post.id} key={"link_" + index}>

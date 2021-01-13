@@ -17,6 +17,10 @@ class FullPost extends Component {
     }
   }
 
+  componentDidUpdate() {
+    console.log("FullPost Component updated: ", this.state.loadedPost.id);
+  }
+
   deletePostHandler = () => {
     console.log("Deleting post...");
     axios
