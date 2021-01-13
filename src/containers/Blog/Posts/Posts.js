@@ -36,7 +36,12 @@ class Posts extends Component {
         </Link>
       );
     });
-    return <section className={styles.Posts}>{posts}</section>;
+    return (
+      <div>
+        <section className={styles.Posts}>{posts}</section>
+        <Route path="/:id" exact component={FullPost} />
+      </div>
+    );
   }
 }
 
