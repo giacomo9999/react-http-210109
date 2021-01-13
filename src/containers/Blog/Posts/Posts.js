@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import axios from "../../../axios";
 import Post from "../../../components/Post/Post";
+import FullPost from "../FullPost/FullPost";
 import styles from "./Posts.module.css";
 
 class Posts extends Component {
@@ -17,14 +18,10 @@ class Posts extends Component {
         });
         this.setState({ postData: adjPosts, error: false });
       })
-      .catch(
-        (err) => console.log(err)
-        // this.setState({ error: true, errorMsg: "An error occurred" })
-      );
+      .catch((err) => console.log(err));
   }
 
   postSelectedHandler = (id) => {
-    // console.log(id + " Clicked.");
     this.setState({ selectedPostId: id });
   };
   render() {
