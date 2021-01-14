@@ -22,16 +22,16 @@ class Posts extends Component {
   }
 
   postSelectedHandler = (id) => {
-    console.log("Post selected...", id);
+    console.log("Posts selected a component...", id);
     this.setState({ selectedPostId: id });
   };
 
   render() {
-    console.log("Render state: ", this.state);
     const posts = this.state.postData.map((post, index) => {
       return (
         <Link to={"/" + post.id} key={"link_" + index}>
           <Post
+            key={"post_" + index}
             title={post.title}
             author={post.author}
             clicked={() => this.postSelectedHandler(post.id)}

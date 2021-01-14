@@ -4,7 +4,6 @@ import { Route, NavLink, Switch } from "react-router-dom";
 
 import Posts from "./Posts/Posts";
 import NewPost from "./NewPost/NewPost";
-import FullPost from "./FullPost/FullPost";
 import styles from "./Blog.module.css";
 
 class Blog extends Component {
